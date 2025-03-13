@@ -4,11 +4,12 @@ import { Auth } from '../models/Auth';
 import Swal from 'sweetalert2';
 import { User } from '../models/User';
 import { AuthService } from '../services/auth.service';
+import { UserFormComponent } from './user-form/user-form.component';
 
 @Component({
   selector: 'user-app',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, UserFormComponent],
   templateUrl: './user-app.component.html'
 })
 export class UserAppComponent implements OnInit {
@@ -19,7 +20,7 @@ export class UserAppComponent implements OnInit {
   user: User;
   newUser: User;
 
-  crear: boolean = false;
+  mostrarCrear: boolean = false;
 
   ngOnInit(): void {
     //this.onSubmit();
@@ -33,8 +34,8 @@ export class UserAppComponent implements OnInit {
     this.newUser = new User();
   }
 
-  setCrear(){
-    this.crear =!this.crear;
+  setMostrarCrear(){
+    this.mostrarCrear =!this.mostrarCrear;
 
   }
 
@@ -50,7 +51,7 @@ export class UserAppComponent implements OnInit {
       }else{
         this.service.findUser(this.auth).subscribe( u => {
           console.log(u);
-          this.user = new User();
+          //this.user = new User();
           if(u.user == '-1'){
             console.log('No existe');
             Swal.fire(
@@ -59,7 +60,7 @@ export class UserAppComponent implements OnInit {
               'error'
             );
             this.newUser.user = this.auth.user;
-            this.setCrear();
+            this.setMostrarCrear();
           } else if(u.user == '-2'){
             console.log('Clave incorrecta');
             Swal.fire(
@@ -74,6 +75,10 @@ export class UserAppComponent implements OnInit {
               'Usuario autenticado',
               'success'
             );
+            this.user.email = u.email;
+            this.user.name = u.name;
+            this.user.user = u.user;
+            this.user.id = u.id;
           }
         });
 
@@ -92,7 +97,7 @@ export class UserAppComponent implements OnInit {
   }
 
   cancelar(): void {
-    this.setCrear();
+    this.setMostrarCrear();
     this.newUser = new User();
     this.auth = new Auth();
   }

@@ -1,5 +1,5 @@
 
-@if(!crear){
+@if(!mostrarCrear){
 
   <div class="card my-4">
     <div class="card-header">
@@ -40,50 +40,48 @@
       </form>
     </div>
   </div>
-
-
-
-
-
-
 }
 
-@if(crear){
-  <div class="card my-4">
-    <div class="card-header">
-      <h5 class="card-tittle">
-        {{ title2 }}
-      </h5>
-    </div>
-    <div class="card-body">
-      <form (ngSubmit)="addUser()">
-        <input name="name"
-        class="form-control my-2 w-25"
-        placeholder="Nombre"
-        [(ngModel)]="newUser.name">
-      <input name="email"
-        class="form-control my-2 w-25"
-        type="email"
-        placeholder="Correo"
-        [(ngModel)]="newUser.email">
-        <input name="username"
-          disabled="true"
-          class="form-control my-2 w-25"
-          placeholder="Username"
-          [(ngModel)]="newUser.user">
-        <input name="password"
-          class="form-control my-2 w-25"
-          type="password"
-          placeholder="Password"
-          [(ngModel)]="newUser.password">
-        <button class="btn btn-primary" type="submit">
-            Aceptar
-        </button>
-        <button class="btn btn-secondary m-2"
-              (click)="cancelar()">
-              Cancelar
+@if(mostrarCrear){
+<div class="abrir-modal animacion fadeIn">
+  <div class="modal" style="display: block;" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Crear Usuario</h5>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addUser()">
+            <input name="name"
+              class="form-control my-2 w-80"
+              placeholder="Nombre"
+              [(ngModel)]="newUser.name">
+            <input name="email"
+              class="form-control my-2 w-80"
+              type="email"
+              placeholder="Correo"
+              [(ngModel)]="newUser.email">
+            <input name="username"
+              disabled="true"
+              class="form-control my-2 w-80"
+              placeholder="Username"
+              [(ngModel)]="newUser.user">
+            <input name="password"
+              class="form-control my-2 w-80"
+              type="password"
+              placeholder="Password"
+              [(ngModel)]="newUser.password">
+            <button class="btn btn-primary" type="submit">
+                Aceptar
             </button>
-      </form>
+            <button class="btn btn-secondary m-2"
+                  (click)="cancelar()">
+                  Cancelar
+                </button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
+</div>
 }
