@@ -15,16 +15,16 @@ export class UserAppComponent implements OnInit {
   title: String = 'Por favor ingresar credenciales de acceso';
   title2: String = 'Crear Usuario';
 
-  auth!: Auth;
-  user!: User;
-  newUser!: User;
+  auth: Auth;
+  user: User;
+  newUser: User;
 
   crear: boolean = false;
 
   ngOnInit(): void {
-   // this.onSubmit();
-    //this.user = new User();
-    //this.auth = new Auth();
+    //this.onSubmit();
+    this.user = new User();
+    this.auth = new Auth();
   }
 
   constructor(private service: AuthService){
@@ -48,24 +48,37 @@ export class UserAppComponent implements OnInit {
           'error'
         );
       }else{
-        this.service.findUser(this.auth).subscribe( u => this.user = u );
-        console.log(this.user.user);
-        if(this.user.user == '-1'){
-          console.log('No existe');
-          this.newUser.user = this.auth.user;
-          this.newUser.email = '';
-          this.setCrear();
-        } else if(this.user.user == '-2'){
-          Swal.fire(
-            'Error de validación',
-            'Clave incorrecta',
-            'error'
-          );
+        this.service.findUser(this.auth).subscribe( u => {
+          console.log(u);
+          this.user = new User();
+          if(u.user == '-1'){
+            console.log('No existe');
+            Swal.fire(
+              'Error de validación',
+              'Usuario no encontrado',
+              'error'
+            );
+            this.newUser.user = this.auth.user;
+            this.setCrear();
+          } else if(u.user == '-2'){
+            console.log('Clave incorrecta');
+            Swal.fire(
+              'Error de validación',
+              'Clave incorrecta',
+              'error'
+            );
+          } else if(u.user.length > 4){
+            console.log('Autenticado');
+            Swal.fire(
+              'Autenticado!',
+              'Usuario autenticado',
+              'success'
+            );
+          }
+        });
 
-        }
       }
     }
-
   }
 
   addUser(): void{
