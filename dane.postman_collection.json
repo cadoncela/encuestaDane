@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "37ee7883-cc3a-4903-9b4b-3e77d8e340d5",
+		"name": "dane",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13436617"
+	},
+	"item": [
+		{
+			"name": "suma",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/encuesta/v1/api/sumar/18/971",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"encuesta",
+						"v1",
+						"api",
+						"sumar",
+						"18",
+						"971"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/encuesta/v1/api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"encuesta",
+						"v1",
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"user\": \"olivere\",\n        \"password\": \"oliver\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/encuesta/v1/api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"encuesta",
+						"v1",
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"user\": \"snoopy\",\n        \"name\": \"Snoopy\",\n        \"password\": \"snoopy\",\n        \"email\": \"snoopy@perrito.com\"\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/encuesta/v1/api/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"encuesta",
+						"v1",
+						"api",
+						"create"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
