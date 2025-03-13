@@ -52,13 +52,14 @@ public class AuthService implements AuthServicePort {
     @Transactional
     @Override
     public AuthEntity createUser(AuthEntity user) {
-        String md5Hex = DigestUtils
-                .md5Hex(user.getPassword());
+        String md5Hex = DigestUtils.md5Hex(user.getPassword());
         user.setPassword(md5Hex);
+        System.out.println("id: " + user.getId());
         System.out.println("user: " + user.getUser());
         System.out.println("psw: " + user.getPassword());
         System.out.println("name: " + user.getName());
         System.out.println("email: " + user.getEmail());
+        user.setId(null);
         return persistencePort.save(user);
     }
 }
