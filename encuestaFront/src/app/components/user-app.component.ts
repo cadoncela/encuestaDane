@@ -54,11 +54,13 @@ export class UserAppComponent implements OnInit {
           //this.user = new User();
           if(u.user == '-1'){
             console.log('No existe');
+            /*
             Swal.fire(
               'Error de validación',
               'Usuario no encontrado',
               'error'
             );
+            */
             this.newUser.user = this.auth.user;
             this.setMostrarCrear();
           } else if(u.user == '-2'){
