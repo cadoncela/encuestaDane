@@ -1,6 +1,41 @@
-<div class="container">
-  <div class="card my-3">
-    <p>{{user.name}}</p>>
+<div class="abrir-modal animacion fadeIn">
+  <div class="modal" style="display: block;" tabindex="-1">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Usuario no encontrado - Crear Usuario</h5>
+        </div>
+        <div class="modal-body">
+          <form (ngSubmit)="addUser()">
+            <input name="name"
+              class="form-control my-2 w-80"
+              placeholder="Nombre"
+              [(ngModel)]="newUser.name">
+            <input name="email"
+              class="form-control my-2 w-80"
+              type="email"
+              placeholder="Correo"
+              [(ngModel)]="newUser.email">
+            <input name="username"
+              disabled="true"
+              class="form-control my-2 w-80"
+              placeholder="Username"
+              [(ngModel)]="newUser.user">
+            <input name="password"
+              class="form-control my-2 w-80"
+              type="password"
+              placeholder="Password"
+              [(ngModel)]="newUser.password">
+            <button class="btn btn-primary" type="submit">
+                Aceptar
+            </button>
+            <button class="btn btn-secondary m-2"
+                  (click)="cancelar()">
+                  Cancelar
+                </button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-

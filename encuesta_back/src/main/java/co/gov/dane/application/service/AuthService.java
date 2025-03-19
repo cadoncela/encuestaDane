@@ -20,6 +20,12 @@ import java.util.List;
 public class AuthService implements AuthServicePort {
 
     private final AuthPersistencePort persistencePort;
+
+    @Override
+    public AuthEntity findById(String id) {
+        return persistencePort.findById(Long.parseLong(id));
+    }
+
     @Override
     public List<AuthEntity> getUsers() {
 

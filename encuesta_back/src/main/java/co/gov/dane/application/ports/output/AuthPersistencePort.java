@@ -10,6 +10,7 @@ import java.util.Optional;
  */
 public interface AuthPersistencePort {
 
+    AuthEntity findById(long id);
     AuthEntity findByUserAndPassword(String user);
     List<AuthEntity> findAll();
     AuthEntity save(AuthEntity user);

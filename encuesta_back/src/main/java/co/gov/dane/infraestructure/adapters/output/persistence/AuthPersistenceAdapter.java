@@ -17,6 +17,12 @@ import java.util.Optional;
 public class AuthPersistenceAdapter implements AuthPersistencePort {
 
     private final AuthRepository repository;
+
+    @Override
+    public AuthEntity findById(long id) {
+        return repository.findById(id).orElseThrow();
+    }
+
     @Override
     public AuthEntity findByUserAndPassword(String user) {
         return repository.findByUser(user);

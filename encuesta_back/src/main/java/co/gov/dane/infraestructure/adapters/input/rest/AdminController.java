@@ -37,6 +37,12 @@ public class AdminController {
         return servicePort.getUsers();
     }
 
+    @GetMapping("/v1/api/{id}")
+    public ResponseEntity<AuthEntity> findById(@PathVariable String id){
+        return ResponseEntity.status(HttpStatus.OK)
+               .body(servicePort.findById(id));
+    }
+
     @PostMapping("/v1/api")
     public ResponseEntity<AuthEntity> authenticate(@Valid @RequestBody AuthRequest auth){
         return ResponseEntity.status(HttpStatus.OK)

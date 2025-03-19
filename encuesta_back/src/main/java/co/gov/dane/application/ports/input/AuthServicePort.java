@@ -10,6 +10,7 @@ import java.util.List;
  */
 public interface AuthServicePort {
 
+    AuthEntity findById(String id);
     List<AuthEntity> getUsers();
     AuthEntity authenticate(AuthRequest user);
     AuthEntity createUser(AuthEntity user);

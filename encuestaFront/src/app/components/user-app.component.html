@@ -1,87 +1,61 @@
-
-@if(!mostrarCrear){
-
-  <div class="card my-4">
-    <div class="card-header">
-      <h5 class="card-tittle">
-        {{ title }}
-      </h5>
-    </div>
-    <div class="card-body">
-      <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
-        <input name="username"
-          class="form-control my-2 w-25"
-          placeholder="Username"
-          [(ngModel)]="auth.user"
-          #user="ngModel"/>
-          @if (user.invalid && (user.dirty || user.touched)) {
-            @if (user.errors!['required']) {
-              <div class="alert alert-danger">
-                user es requerido.
-            </div>
-            }
-          }
-        <input name="password"
-          class="form-control my-2 w-25"
-          type="password"
-          placeholder="Password"
-          [(ngModel)]="auth.password"
-          #password="ngModel"/>
-          @if (password.invalid && (password.dirty || password.touched)) {
-            @if (password.errors!['required']) {
-              <div class="alert alert-danger">
-                password es requerido.
-            </div>
-            }
-          }
-        <button class="btn btn-primary" type="submit">
-            Aceptar
-        </button>
-      </form>
-    </div>
-  </div>
-}
-
-@if(mostrarCrear){
-<div class="abrir-modal animacion fadeIn">
-  <div class="modal" style="display: block;" tabindex="-1">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Usuario no encontrado - Crear Usuario</h5>
-        </div>
-        <div class="modal-body">
-          <form (ngSubmit)="addUser()">
-            <input name="name"
-              class="form-control my-2 w-80"
-              placeholder="Nombre"
-              [(ngModel)]="newUser.name">
-            <input name="email"
-              class="form-control my-2 w-80"
-              type="email"
-              placeholder="Correo"
-              [(ngModel)]="newUser.email">
-            <input name="username"
-              disabled="true"
-              class="form-control my-2 w-80"
-              placeholder="Username"
-              [(ngModel)]="newUser.user">
-            <input name="password"
-              class="form-control my-2 w-80"
-              type="password"
-              placeholder="Password"
-              [(ngModel)]="newUser.password">
-            <button class="btn btn-primary" type="submit">
-                Aceptar
-            </button>
-            <button class="btn btn-secondary m-2"
-                  (click)="cancelar()">
-                  Cancelar
-                </button>
-          </form>
-        </div>
+<div class="container col-6 my-4" >
+  @if( !flagSurvey ){
+    <div class="card my-4">
+      <div class="card-header">
+        <h5 class="card-tittle">
+          {{ title }}
+        </h5>
       </div>
+      <div class="card-body">
+        <form (ngSubmit)="onSubmit(userForm)" #userForm="ngForm">
+          <input name="username"
+            class="form-control my-2 w-25"
+            placeholder="Username"
+            [(ngModel)]="auth.user"
+            #user="ngModel"/>
+            @if (user.invalid && (user.dirty || user.touched)) {
+              @if (user.errors!['required']) {
+                <div class="alert alert-danger">
+                  user es requerido.
+              </div>
+              }
+            }
+          <input name="password"
+            class="form-control my-2 w-25"
+            type="password"
+            placeholder="Password"
+            [(ngModel)]="auth.password"
+            #password="ngModel"/>
+            @if (password.invalid && (password.dirty || password.touched)) {
+              @if (password.errors!['required']) {
+                <div class="alert alert-danger">
+                  password es requerido.
+              </div>
+              }
+            }
+          <button class="btn btn-primary" type="submit">
+              Aceptar
+          </button>
+        </form>
+        <br />
+      </div>
+      <!--
+        <button class="btn btn-secondary"
+                    (click)="irAPagina()">
+              Ir a Pagina
+          </button>
+
+            <a class="nav-link" [routerLink]="['/form/survey']">Crear Usuario</a>
+          -->
     </div>
-  </div>
+  }
+  @if(flagSurvey){
+    <router-outlet></router-outlet>
+  }
+
+  @if(mostrarCrear){
+    <user-form [newUser]="newUser" (mostrarCrearEmmit)="setMostrarCrear()"/>
+  }
+
 </div>
-}
+
